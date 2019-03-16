@@ -1,5 +1,7 @@
 package com.xjtu.ssmidea.algorithm;
 
+import java.util.Arrays;
+
 /**
  * @auther coraljiao
  * @date 2019/3/14 10:37
@@ -7,13 +9,13 @@ package com.xjtu.ssmidea.algorithm;
  */
 public class day002 {
     public static void main(String[] args) {
-//        int[] arr = {2, 5, 7, 1, 9};
-//        //sort2(arr);
-//        //sort002(arr);
-//        sort0021(arr, 0, arr.length - 1);
-//        for (int i = 0; i < arr.length; i++) {
-//            System.out.println(arr[i]);
-//        }
+        int[] arr = {2, 5, 7, 1, 9};
+        //sort2(arr);
+        sort2(arr);
+        //sort0021(arr, 0, arr.length - 1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
 
 
         ListNode a = new ListNode(1);
@@ -41,15 +43,20 @@ public class day002 {
 //            a = a.next;
 //            //a=a.next;
 //        }
-        ListNode f = new ListNode(7);
-        ListNode g = new ListNode(8);
-        f.next=g;
-        merge(a,f);
-                while (a != null) {
-            System.out.println(a.val);
-            a = a.next;
-            //a=a.next;
-        }
+//        ListNode f = new ListNode(7);
+//        ListNode g = new ListNode(8);
+//        f.next=g;
+//        merge(a,f);
+//                while (a != null) {
+//            System.out.println(a.val);
+//            a = a.next;
+//            //a=a.next;
+//        }
+
+//        String str="We Are Happy";
+//        System.out.println(replaceSpace(str));
+//        String[] strs={"flower","flow","flight"};
+//        System.out.println(replaceSpace(strs));
 
     }
     //获取链表的第k个节点
@@ -139,7 +146,7 @@ public class day002 {
     //堆排序是一种选择排序，整体主要由构建初始堆+交换堆顶元素和末尾元素并重建堆两部分组成。
     private static void sort2(int[] arr) {
         //构建大顶堆
-        for (int i = 0; i < arr.length / 2 - 1; i++) {
+        for (int i = arr.length / 2 - 1; i >= 0; i--) {
             //从第一个非叶子结点从下至上，从右至左调整结构
             adjustHeap(arr, i, arr.length);
         }
@@ -212,5 +219,61 @@ public class day002 {
         }
     }
 
+    //替换空格
+    public  static String replaceSpace(String str){
+        StringBuffer sb=new StringBuffer();
+        int length=str.length();
+        for (int i = 0; i < length; i++) {
+            char index=str.charAt(i);
+            if (String.valueOf(index).equals(" ")){
+                sb.append("%2");
+            }else {
+                sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+    public static String replaceSpace2(StringBuffer str) {
+        return str.toString().replaceAll("\\s", "%20");
+    }
+    //最长公共前缀,编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""
+    //先利用Arrays.sort(strs)为数组排序，再将数组第一个元素和最后一个元素的字符从前往后对比即可
+    public static String replaceSpace(String[] strs){
+        // 如果检查值不合法及就返回空串
+        if (!chechStrs(strs)) {
+            return "";
+        }
+        // 数组长度
+        int len = strs.length;
+        // 用于保存结果
+        StringBuilder res = new StringBuilder();
+        // 给字符串数组的元素按照升序排序(包含数字的话，数字会排在前面)
+        Arrays.sort(strs);
+        int m = strs[0].length();
+        int n = strs[len - 1].length();
+        int num = Math.min(m, n);
+        for (int i = 0; i < num; i++) {
+            if (strs[0].charAt(i) == strs[len - 1].charAt(i)) {
+                res.append(strs[0].charAt(i));
+            } else
+                break;
 
+        }
+        return res.toString();
+    }
+    private static boolean chechStrs(String[] strs) {
+        boolean flag = false;
+        // 注意：=是赋值，==是判断
+        if (strs != null) {
+            // 遍历strs检查元素值
+            for (int i = 0; i < strs.length; i++) {
+                if (strs[i] != null && strs[i].length() != 0) {
+                    flag = true;
+                } else {
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
 }
