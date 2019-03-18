@@ -108,7 +108,7 @@ public class day005 {
         sort01(arr, i + 1, high);
     }
 
-    //归并排序，构建大顶堆
+    //归并排序
     public static void sort2(int[] arr) {
         //排序前先定义一个空的数组
         int[] temp = new int[arr.length];
@@ -150,44 +150,47 @@ public class day005 {
     }
 
     //堆排序
-    public static void sort5(int[] arr){
+    public static void sort5(int[] arr) {
         //先建大顶堆或者小顶堆
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
-            adjust(arr,i,arr.length);
+            adjust(arr, i, arr.length);
         }
         //交换并调整堆结构
         for (int j = arr.length - 1; j > 0; j--) {
             //将堆顶元素和堆底元素互换
-            swap(arr,0,j);
-            adjust(arr,0,j);
+            swap(arr, 0, j);
+            adjust(arr, 0, j);
         }
     }
 
     private static void swap(int[] arr, int i, int j) {
-        int temp=arr[i];
-        arr[i]=arr[j];
-        arr[j]=temp;
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     private static void adjust(int[] arr, int left, int right) {
         //先取出当前元素
-        int first=arr[left];
+        int first = arr[left];
         //从i结点的左子结点开始，也就是2i+1处开始
-        for (int k=2*left+1;k<right;k=2*k+1){
+        for (int k = 2 * left + 1; k < right; k = 2 * k + 1) {
             //如果左子结点小于右子结点，k指向右子结点
-            if (k+1<right&&arr[k]<arr[k+1]){
+            if (k + 1 < right && arr[k] < arr[k + 1]) {
                 k++;
             }
             //交换子节点与父节点
-            if (arr[k]>first){
-                arr[left]=arr[k];
-                left=k;
-            }else {
+            if (arr[k] > first) {
+                arr[left] = arr[k];
+                left = k;
+            } else {
                 break;
             }
         }
-        arr[left]=first;
+        arr[left] = first;
     }
+
+    //反转链表
+
 }
 
 
