@@ -14,34 +14,58 @@ public class day007 {
     public static void main(String[] args) {
         //test();
 
-//        int[] arr = {2, 5, 7, 1, 9};
-//        sort04(arr);
-//        for (int i = 0; i < arr.length; i++) {
-//            System.out.println(arr[i]);
-//        }
+        int[] arr = {2, 5, 7, 1, 9};
+        sort07(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
 
-        ListNode a = new ListNode(1);
-        ListNode b = new ListNode(2);
-        ListNode c = new ListNode(3);
-        ListNode d = new ListNode(4);
-        ListNode e = new ListNode(5);
-        a.next = b;
-        b.next = c;
-        c.next = d;
-        d.next = e;
-        //ListNode node = sort05(a);
-        ListNode f = new ListNode(7);
-        ListNode g = new ListNode(8);
-        f.next = g;
-        sort06(a, f);
+//        ListNode a = new ListNode(1);
+//        ListNode b = new ListNode(2);
+//        ListNode c = new ListNode(3);
+//        ListNode d = new ListNode(4);
+//        ListNode e = new ListNode(5);
+//        a.next = b;
+//        b.next = c;
+//        c.next = d;
+//        d.next = e;
+//        //ListNode node = sort05(a);
+//        ListNode f = new ListNode(7);
+//        ListNode g = new ListNode(8);
+//        f.next = g;
+//        sort06(a, f);
+//
+//        sort05(a);
+////        while (g != null) {
+////            System.out.println(g.val);
+////            g = g.next;
+////        }
+//        ListNode node = sort4(g, 2);
+//        System.out.println(node.val);
+    }
 
-        sort05(a);
-//        while (g != null) {
-//            System.out.println(g.val);
-//            g = g.next;
-//        }
-        ListNode node = sort4(g, 2);
-        System.out.println(node.val);
+    //选择排序
+    public static void sort06(int[] arr) {
+        if (arr == null || arr.length < 2) return;
+
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                minIndex = arr[minIndex] > arr[j] ? j : minIndex;
+            }
+            swap(arr, i, minIndex);
+        }
+    }
+
+    //插入排序
+    public static void sort07(int[] arr) {
+        //以第一个数为准，从第二个数开始与前面的数比较，然后交换
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
+                swap(arr, j, j+1);
+            }
+        }
     }
 
     //反转单链表
@@ -93,7 +117,7 @@ public class day007 {
         for (int i = 1; i < length; i++) {
             if (k == i) {
                 before.next = before.next.next;
-            }else {
+            } else {
                 dummy.next = before.next;
             }
 
