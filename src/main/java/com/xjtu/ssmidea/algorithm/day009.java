@@ -1,9 +1,6 @@
 package com.xjtu.ssmidea.algorithm;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @auther coraljiao
@@ -12,6 +9,72 @@ import java.util.Scanner;
  */
 public class day009 {
     public static void main(String[] args) {
+        //test();
+
+        //test2();
+//        int[] nums = {1,1,2};
+//        System.out.println(removeDuplicates(nums));
+        String a="ab";
+        String b="a"+"b";
+        System.out.println(a==b);
+    }
+
+    public static void test2() {
+        HashMap<Character, Character> mappings= new HashMap<Character, Character>();
+        mappings.put(')', '(');
+        mappings.put('}', '{');
+        mappings.put(']', '[');
+        String s="()";
+        System.out.println(isValid2(s));
+    }
+
+    private static boolean isValid2(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (c=='(' || c=='[' || c=='{') {
+                stack.push(c);
+            } else {
+                if (stack.empty()) return false;
+                if (c==')' && stack.pop()!='(') return false;
+                if (c==']' && stack.pop()!='[') return false;
+                if (c=='}' && stack.pop()!='{') return false;
+            }
+        }
+        return stack.empty();
+    }
+    public static int removeDuplicates(int[] nums) {
+        if (nums==null||nums.length<0) return 0;
+        int temp=0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j]==nums[j+1]){
+                    continue;
+                }else {
+                    temp++;
+                }
+            }
+        }
+        return temp;
+    }
+
+    public static boolean isValid(String s,HashMap<Character,Character> mappings) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (mappings.containsKey(c)) {
+                char topElement = stack.empty() ? '#' : stack.pop();
+                if (topElement != mappings.get(c)) {
+                    return false;
+                }
+            } else {
+                stack.push(c);
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static void test() {
         Scanner sc = new Scanner(System.in);
         String array = sc.nextLine();
         ArrayList<String> list = new ArrayList<>();

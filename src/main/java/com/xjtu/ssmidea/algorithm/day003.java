@@ -7,9 +7,9 @@ package com.xjtu.ssmidea.algorithm;
  */
 public class day003 {
     public static void main(String[] args) {
-        int[] arr = {2, 5, 7, 1, 9};
+        int[] arr = {1, 3, 2, 7, 4};
         //sort01(arr, 0, arr.length - 1);
-        sort02(arr);
+        sort4(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }

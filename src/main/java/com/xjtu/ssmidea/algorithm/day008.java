@@ -11,30 +11,30 @@ import java.util.Stack;
 public class day008 {
     public static void main(String[] args) {
         //test();
-//        int[] arr = {2, 5, 7, 1};
-//        sort5(arr);
-//        for (int i = 0; i < arr.length; i++) {
-//            System.out.println(arr[i]);
-//        }
-
-        ListNode a = new ListNode(1);
-        ListNode b = new ListNode(2);
-        ListNode c = new ListNode(3);
-        ListNode d = new ListNode(4);
-        ListNode e = new ListNode(5);
-        a.next = b;
-        b.next = c;
-        c.next = d;
-        d.next = e;
-
-        ListNode f = new ListNode(6);
-        ListNode g = new ListNode(7);
-        f.next = g;
-        ListNode node = sort9(a, f);
-        while (node != null) {
-            System.out.println(node.val);
-            node = node.next;
+        int[] arr = {1, 3, 2, 7, 4};
+        sort3(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
         }
+
+//        ListNode a = new ListNode(1);
+//        ListNode b = new ListNode(2);
+//        ListNode c = new ListNode(3);
+//        ListNode d = new ListNode(4);
+//        ListNode e = new ListNode(5);
+//        a.next = b;
+//        b.next = c;
+//        c.next = d;
+//        d.next = e;
+//
+//        ListNode f = new ListNode(6);
+//        ListNode g = new ListNode(7);
+//        f.next = g;
+//        ListNode node = sort9(a, f);
+//        while (node != null) {
+//            System.out.println(node.val);
+//            node = node.next;
+//        }
     }
 
     //单链表反转
