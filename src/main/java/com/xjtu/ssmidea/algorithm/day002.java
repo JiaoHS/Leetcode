@@ -11,22 +11,22 @@ public class day002 {
     public static void main(String[] args) {
         int[] arr = {2, 5, 7, 1, 9};
         //sort2(arr);
-        sort2(arr);
+        sort002(arr);
         //sort0021(arr, 0, arr.length - 1);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
 
 
-        ListNode a = new ListNode(1);
-        ListNode b = new ListNode(2);
-        ListNode c = new ListNode(5);
-        ListNode d = new ListNode(4);
-        ListNode e = new ListNode(3);
-        a.next = b;
-        b.next = c;
-        c.next = d;
-        d.next = e;
+//        ListNode a = new ListNode(1);
+//        ListNode b = new ListNode(2);
+//        ListNode c = new ListNode(5);
+//        ListNode d = new ListNode(4);
+//        ListNode e = new ListNode(3);
+//        a.next = b;
+//        b.next = c;
+//        c.next = d;
+//        d.next = e;
         //反转链表
 //        reverse002(a);
 //        while (e != null) {

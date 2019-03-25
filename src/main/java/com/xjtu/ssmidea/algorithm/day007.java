@@ -15,7 +15,7 @@ public class day007 {
         //test();
 
         int[] arr = {2, 5, 7, 1, 9};
-        sort07(arr);
+        sort02(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }

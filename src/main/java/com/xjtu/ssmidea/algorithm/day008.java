@@ -12,7 +12,7 @@ public class day008 {
     public static void main(String[] args) {
         //test();
         int[] arr = {1, 3, 2, 7, 4};
-        sort3(arr);
+        sort1(arr);
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
