@@ -15,6 +15,10 @@ public class day011 {
     }
     //快排
     private static void sort2(int[] nums) {
+        sort3(nums,0,nums.length);
+    }
+
+    private static void sort3(int[] nums, int left, int right) {
 
     }
 }
