@@ -12,11 +12,20 @@ public class day010 {
     //死锁
     public static void main(String[] args) {
         //sisuo();
-        int[] nums = {1, 3, 2, 7, 4};
-        sort2(nums);
-        for (int i = 0; i < nums.length; i++) {
-            System.out.println(nums[i]);
-        }
+//        int[] nums = {1, 3, 2, 7, 4};
+//        sort2(nums);
+//        for (int i = 0; i < nums.length; i++) {
+//            System.out.println(nums[i]);
+//        }
+
+//        short s1=1;
+////        s1=s1+1;
+
+        Integer i1=128;
+        Integer i2=128;
+        System.out.println(i1==i2);
+
+
     }
 
     //归并排序
