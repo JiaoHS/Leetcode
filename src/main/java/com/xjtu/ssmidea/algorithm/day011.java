@@ -1,5 +1,8 @@
 package com.xjtu.ssmidea.algorithm;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @auther coraljiao
  * @date 2019/3/25 10:11
@@ -12,6 +15,8 @@ public class day011 {
         for (int i = 0; i < nums.length; i++) {
             System.out.println(nums[i]);
         }
+
+        Lock lock=new ReentrantLock();
     }
 
     //堆排序
