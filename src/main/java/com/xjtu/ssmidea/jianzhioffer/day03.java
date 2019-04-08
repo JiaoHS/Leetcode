@@ -8,12 +8,115 @@ package com.xjtu.ssmidea.jianzhioffer;
 public class day03 {
     public static void main(String[] args) {
         int[] nums = {8, 1, 4, 7, 5};
-        sort001(nums);
+        sort006(nums);
         for (int i = 0; i < nums.length; i++) {
             System.out.println(nums[i]);
         }
     }
 
+    //归并排序
+    private static void sort006(int[] nums) {
+        int[] temp = new int[nums.length];
+        sort007(nums, 0, nums.length - 1, temp);
+    }
+
+    private static void sort007(int[] nums, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            sort007(nums, left, mid, temp);
+            sort007(nums, mid + 1, right, temp);
+            merge007(nums, left, mid, right, temp);
+        }
+    }
+
+    private static void merge007(int[] nums, int left, int mid, int right, int[] temp) {
+        int i = left, j = mid + 1;
+        int t = 0;
+        while (i <= mid && j <= right) {
+            if ( nums[i] < nums[j]) {
+                temp[t++] = nums[i++];
+            } else {
+                temp[t++] = nums[j++];
+            }
+        }
+        while (i <= mid) {
+            temp[t++] = nums[i++];
+        }
+        while (j <= right) {
+            temp[t++] = nums[j++];
+        }
+        t = 0;
+        while (left <= right) {
+            nums[left++] = temp[t++];
+        }
+    }
+
+    //堆排序
+    private static void sort005(int[] nums) {
+        //构建堆
+        for (int i = nums.length / 2 - 1; i > 0; i--) {
+            adjust005(nums, i, nums.length - 1);
+        }
+        //调整
+        for (int j = nums.length - 1; j > 0; j--) {
+            adjust005(nums, 0, j);
+            swap005(nums, 0, j);
+        }
+    }
+
+    private static void swap005(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    private static void adjust005(int[] nums, int left, int right) {
+        int temp = nums[left];
+        for (int k = 2 * left + 1; k < right; k = 2 * k + 1) {
+            //先跟兄弟节点比较
+            if (k + 1 < right && nums[k] < nums[k + 1]) {
+                k++;
+            }
+            //跟父节点交换
+            if (nums[k] > temp) {
+                nums[left] = nums[k];
+                left = k;
+            } else {
+                break;
+            }
+        }
+        nums[left] = temp;
+    }
+
+    private static void adjust(int[] nums, int left, int right) {
+
+    }
+
+    //快排
+    private static void sort003(int[] nums) {
+        sort004(nums, 0, nums.length - 1);
+    }
+
+    private static void sort004(int[] nums, int left, int right) {
+        if (left > right) return;
+        int i = left, j = nums.length - 1;
+        int temp = nums[left];
+        while (i < j) {
+            while (i < j && nums[j] >= temp) {
+                j--;
+            }
+            nums[i] = nums[j];
+            while (i < j && nums[i] <= temp) {
+                i++;
+            }
+            nums[j] = nums[i];
+        }
+        nums[i] = temp;
+        sort004(nums, left, i - 1);
+        sort004(nums, i + 1, right);
+    }
+
+    //快排
     private static void sort001(int[] nums) {
         sort002(nums, 0, nums.length - 1);
     }
