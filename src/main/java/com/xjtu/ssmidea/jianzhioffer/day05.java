@@ -1,6 +1,9 @@
 package com.xjtu.ssmidea.jianzhioffer;
 
+import java.util.ArrayList;
 import java.util.Stack;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @auther coraljiao
@@ -42,9 +45,10 @@ public class day05 {
 //            node = node.next;
 //        }
 
-
+        ExecutorService pool = Executors.newScheduledThreadPool(4);
     }
 
+    //合并有序的两个链表
     private static ListNode sort059(ListNode list1, ListNode list2) {
         if (list1 == null) {
             return list2;
@@ -61,6 +65,7 @@ public class day05 {
         }
     }
 
+    //删除第k个
     private static ListNode sort058(ListNode head, int k) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -259,7 +264,7 @@ public class day05 {
         return res;
     }
 
-    //字符串回文
+    //3个重复的数字删除
     public static String paopao(String s, int k) {
         if (s == null || s.length() <= 1) {
             return s;
@@ -313,5 +318,34 @@ public class day05 {
         }
         change(head, tail, root.right);
         return head;
+    }
+
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        if (pRootOfTree == null || (pRootOfTree.left == null && pRootOfTree.right == null))
+            return pRootOfTree;
+        ArrayList<TreeNode> nodeList = new ArrayList<>();
+        BuildArrayList(pRootOfTree, nodeList);//这个函数执行后，数组中每个元素按照大小前后排序
+        for (int i = 0; i < nodeList.size(); i++) {
+            if (i == 0) {//数组的第一个节点处理，只有右子树指向下一个节点
+                nodeList.get(0).right = nodeList.get(1);
+            } else if (i == nodeList.size() - 1) {//数组的最后一个节点，只有左子树指向前一个节点
+                nodeList.get(i).left = nodeList.get(i - 1);
+            } else {//数组中的中间节点，左子树指向上一个节点，右子树指向数组的下一个节点
+                nodeList.get(i).left = nodeList.get(i - 1);
+                nodeList.get(i).right = nodeList.get(i + 1);
+            }
+        }
+        return nodeList.get(0);
+    }
+
+    public void BuildArrayList(TreeNode root, ArrayList<TreeNode> nodeList) {//二叉搜索的中序遍历，并把每个节点存入数组中
+        if (root == null)
+            return;
+        if (root.left != null)//左子树
+            BuildArrayList(root.left, nodeList);
+        if (root != null)//根节点
+            nodeList.add(root);
+        if (root.right != null)//右子树
+            BuildArrayList(root.right, nodeList);
     }
 }
