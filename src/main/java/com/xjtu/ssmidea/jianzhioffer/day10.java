@@ -1,5 +1,7 @@
 package com.xjtu.ssmidea.jianzhioffer;
 
+import static com.xjtu.ssmidea.algorithm.day005.sort01;
+
 /**
  * @auther coraljiao
  * @date 2019/4/19 19:10
@@ -12,6 +14,6 @@ public class day10 {
     }
     //快排
     private static void sort(int[] arr) {
-
+        sort01(arr,0,arr.length-1);
     }
 }
