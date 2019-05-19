@@ -14,6 +14,12 @@ public class day10 {
     }
     //快排
     private static void sort(int[] arr) {
-        sort01(arr,0,arr.length-1);
+        sort02(arr,0,arr.length-1);
     }
+
+    private static void sort02(int[] arr, int i, int j) {
+
+    }
+
+    //
 }
