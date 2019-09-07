@@ -145,6 +145,7 @@ public class day001 {
 
     //删除第k个节点
     public static ListNode sort5(ListNode head, int k) {
+        if (head==null||k<1){ return head;}
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode before = dummy, after = dummy;
