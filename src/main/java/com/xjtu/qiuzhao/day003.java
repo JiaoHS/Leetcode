@@ -38,7 +38,7 @@ public class day003 {
 
     }
     //获取链表中的倒数第k个元素
-    private static ListNode getNode003(ListNode a, int i) {
+    private static ListNode getNode003(ListNode a, int k) {
         if (a == null) return null;
         int length = 0;
         ListNode temp = a;
@@ -48,8 +48,8 @@ public class day003 {
             length++;
             temp = temp.next;
         }
-        if (i <= 0 || i > length) return null;
-        for (int j = 0; j < i - 1; j++) {
+        if (k <= 0 || k > length) return null;
+        for (int j = 0; j < length - 1; j++) {
             before = before.next;
         }
         while (before.next != null) {
@@ -200,4 +200,36 @@ public class day003 {
         quickSort003(arr, left, i - 1);
         quickSort003(arr, i + 1, right);
     }
+
+
+}
+//单例模式 双检查
+class Singlon{
+    private static volatile Singlon singlon;
+    private Singlon(){}
+    public static Singlon getSinglon(){
+        if (singlon==null){
+            synchronized (Singlon.class){
+                if (singlon==null){
+                    singlon=new Singlon();
+                }
+            }
+        }
+        return singlon;
+    }
+}
+//静态内部类
+class Sington1{
+    private Sington1(){}
+    private static class getSington1{
+        private static Sington1 sington1=new Sington1();
+    }
+    public static Sington1 getINs(){
+        return getSington1.sington1;
+    }
+}
+//枚举
+enum Sington2{
+    INSTANCE;
+    public void getIns(){}
 }
