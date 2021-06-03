@@ -1,5 +1,7 @@
 package com.xjtu.qiuzhao;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.util.Stack;
 
 /**
@@ -78,4 +80,22 @@ public class 前中后序遍历 {
                 System.out.print(stack2.pop().val + " ");
         }
     }
+}
+class Sington{
+    private volatile static Sington sington;
+    private Sington(){}
+    public Sington getSington(){
+        if (sington==null){
+            synchronized (Sington.class){
+                if (sington==null){
+                    sington=new Sington();
+                    //1. 为 uniqueInstance 分配内存空间
+                    //2. 初始化 uniqueInstance
+                    //3. 将 uniqueInstance 指向分配的内存地址
+                }
+            }
+        }
+        return sington;
+    }
+
 }

@@ -14,6 +14,11 @@ class Node {
     public Node(int data) {
         this.data = data;
     }
+
+    Node left;
+    Node right;
+    int maxLeftLen;   // 从该节点向左走，最大距离
+    int maxRightLen;  // 从该节点向右走，最大距离
 }
 
 public class MyLinkedList {

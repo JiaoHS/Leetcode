@@ -6,10 +6,10 @@ package com.xjtu.ssmidea.jianzhioffer;
  * @description
  */
 public class Node {
-    int val;
-    Node next = null;
+    public int val;
+    public Node next = null;
 
-    Node(int val) {
+    public Node(int val) {
         this.val = val;
     }
 }

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../static/js/echarts.min.js"></script>
+    <!--引入这个文件是显示省份名称到省会坐标 -->
+    <script src="../static/js/china.js"></script>
+    <!--引入这个文件是显示省份名称居中-->
+    <script src="../static/js/chinaCenter.js"></script>
+    <!-- <script src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>  -->
+
+    <style>#china-map {width:1000px; height: 1000px;margin: auto;}</style>
+</head>
+<body>
+<div id="china-map"></div>
+<script type="text/javascript">
+    var option = {
+        // title : {
+        //     text: '订单量',
+        //     subtext: '纯属虚构',
+        //     x:'center'
+        // },
+        // tooltip : {//提示框组件。
+        //     trigger: 'item'//数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+        // },
+        legend: {
+            orient: 'horizontal',//图例的排列方向
+            x:'left',//图例的位置
+            data:['省会']
+        },
+
+        visualMap: {//颜色的设置  dataRange
+            x: 'left',
+            y: 'center',
+            splitList: [
+                {start: 1500},
+                {start: 900, end: 1500},
+                {start: 310, end: 1000},
+                {start: 200, end: 300},
+                {start: 10, end: 200, label: '10 到 200（自定义label）'},
+                {start: 5, end: 5, label: '5（自定义特殊颜色）', color: 'black'},
+                {end: 10}
+            ],
+//            min: 0,
+//            max: 2500,
+//            calculable : true,//颜色呈条状
+            text:['高','低'],// 文本，默认为数值文本
+            color: ['#E0022B', '#E09107', '#A3E00B']
+        },
+        // toolbox: {//工具栏
+        //     show: true,
+        //     orient : 'vertical',//工具栏 icon 的布局朝向
+        //     x: 'right',
+        //     y: 'center',
+        //     feature : {//各工具配置项。
+        //         mark : {show: true},
+        //         dataView : {show: true, readOnly: false},//数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新。
+        //         restore : {show: true},//配置项还原。
+        //         saveAsImage : {show: true}//保存为图片。
+        //     }
+        // },
+        // roamController: {//控制地图的上下左右放大缩小 图上没有显示
+        //     show: true,
+        //     x: 'right',
+        //     mapTypeControl: {
+        //         'china': true
+        //     }
+        // },
+        bmap: {
+            center: [113.65, 34.76],
+            zoom: 5,
+            roam: true,
+            mapStyle: {
+                styleJson: [{
+                    'featureType': 'land', //调整土地颜色  #FFFFCD
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#F0FFFF'
+                    }
+                }, {
+                    'featureType': 'building', //调整建筑物颜色
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#F0FFFF'
+                    }
+                }, {
+                    'featureType': 'building', //调整建筑物标签是否可视
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'highway', //调整高速道路颜色
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#F0FFFF'
+                    }
+                }, {
+                    'featureType': 'highway', //调整高速名字是否可视
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'arterial', //调整一些干道颜色
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#F0FFFF'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'green',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'water',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#FAFFF0'
+                    }
+                }, {
+                    'featureType': 'subway', //调整地铁颜色
+                    'elementType': 'geometry.stroke',
+                    'stylers': {
+                        'color': '#CCCCCC'
+                    }
+                }, {
+                    'featureType': 'subway',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'railway',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'railway',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'all', //调整所有的标签的边缘颜色
+                    'elementType': 'labels.text.stroke',
+                    'stylers': {
+                        'color': '#000'
+                    }
+                }, {
+                    'featureType': 'all', //调整所有标签的填充颜色
+                    'elementType': 'labels.text.fill',
+                    'stylers': {
+                        'color': '#000'
+                    }
+                }, {
+                    'featureType': 'manmade',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'manmade',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'local',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'local',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'subway',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'lightness': -65
+                    }
+                }, {
+                    'featureType': 'railway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'lightness': -40
+                    }
+                }, {
+                    'featureType': 'boundary',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#8b8787',
+                        'weight': '1',
+                        'lightness': -29
+                    }
+                }]
+            }
+        },
+        series : [
+            {
+                name: '订单量',
+                type: 'map',
+                mapType: 'china',
+                roam: false,//是否开启鼠标缩放和平移漫游
+                showLegendSymbol: false,
+                itemStyle:{//地图区域的多边形 图形样式
+                    normal:{//是图形在默认状态下的样式
+                        label:{
+                            show:true,//是否显示省份名称
+                            textStyle: {
+                                color: "rgb(249, 249, 249)",  //省份名称的颜色
+                                fontSize: 12    //省份名称的字体大小
+                            }
+                        }
+                    },
+                    emphasis:{//是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
+                        // label:{show:true}
+                    }
+                },
+                top:"3%",//组件距离容器的距离
+                data:[
+                    {coords: [113.28897,35.21867]}
+                ]
+            }
+        ]
+    };
+    var myChart = echarts.init(document.getElementById('china-map'));
+    myChart.setOption(option);
+    // myChart.on('mouseover', function (params) {
+    //     var dataIndex = params.dataIndex;
+    //     console.log(params);
+    // });
+</script>
+<script type="text/javascript">
+    var res = [
+        {
+            "count": 1,
+            "areaList": "110114,海淀区|110100,市辖区|110000,北京市"
+        },
+        {
+            "count": 2,
+            "areaList": "110114,朝阳区|110100,市辖区|110000,北京市"
+        },
+        {
+            "count": 6,
+            "areaList": "110114,昌平区|110100,市辖区|110000,北京市"
+        },
+        {
+            "count": 2,
+            "areaList": "330106,西湖区|330100,杭州市|330000,浙江省"
+        },
+        {
+            "count": 5,
+            "areaList": "330106,拱墅区|330100,杭州市|330000,浙江省"
+        },
+        {
+            "count": 8,
+            "areaList": "330106,滨江区|330100,杭州市|330000,浙江省"
+        },
+        {
+            "count": 1,
+            "areaList": "330106,江干区|330100,杭州市|330000,浙江省"
+        }
+    ];
+
+    function calcValue(res,provinceName){
+        var valueNum=0;
+        for(var i=0;i<res.length;i++){
+            if(res[i].areaList.substr(res[i].areaList.length-3) == provinceName){
+                valueNum = valueNum + res[i].count;
+            }
+        }
+        return valueNum;
+    }
+    var aaa = calcValue(res,'浙江省')
+    console.log(aaa)
+    var fruits=["Banana","Orange","Apple","Mango","Banana","Orange","Apple"];
+    var a = fruits.indexOf("Apple");
+    console.log(fruits.indexOf("Apple") != -1);
+    console.log(a)
+</script>
+</body>
+</html>
